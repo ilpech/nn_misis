@@ -26,7 +26,7 @@ def euclidean_distance(first_point, second_point):
 
 
 def make_dataset(center_box=(0, 100.0), cluster_std=1.0,
-                 n_features = 2, n_samples = 10000, n_classes = 20,
+                 n_features = 2, n_samples = 10000, n_classes = 40,
                  linear_separable=True):
     generator = np.random.RandomState(420)
     classes = generator.uniform(center_box[0], center_box[1], size=(n_classes, n_features))
@@ -44,9 +44,14 @@ def make_dataset(center_box=(0, 100.0), cluster_std=1.0,
         else:
             # check for linear sep
             if not linear_separable:
-                shift = generator.uniform(0, 5, size=(1, n_features))
                 # print(shift)
-                classes[i] = classes[i-1] + shift
+                n_cluster = 4
+                if i % n_cluster == 0:
+                    shift = generator.uniform(-10, 10, size=(1, n_features))
+                    classes[i] = classes[int(generator.uniform(0,i-1))] - shift * generator.uniform(1,10)
+                else:
+                    shift = generator.uniform(-5, 5, size=(1, n_features))
+                    classes[i] = classes[i-1] + shift
             new_data = generator.normal(loc=classes[i], scale=std,
                                         size=(n, n_features))
             new_labels = np.full(n, i)
@@ -55,7 +60,7 @@ def make_dataset(center_box=(0, 100.0), cluster_std=1.0,
             # sys.exit(0)
             for target_class in range(i):
                 target_data_center = classes[target_class]
-                print(euclidean_distance(target_data_center, new_data_center))
+                # print(euclidean_distance(target_data_center, new_data_center))
                 # if(euclidean_distance(target_data_center, new_data_center) > 3.0):
                 #     continue
                 target = X[(y == target_class)]
@@ -64,7 +69,6 @@ def make_dataset(center_box=(0, 100.0), cluster_std=1.0,
                 x_ = np.concatenate((target, new_data))
                 y_ = np.concatenate((target_labels, new_labels))
                 from sklearn.preprocessing import StandardScaler
-
                 # print(new_labels)
                 sc = StandardScaler()
                 x_ = sc.fit_transform(x_)
@@ -75,41 +79,24 @@ def make_dataset(center_box=(0, 100.0), cluster_std=1.0,
                 was_unsep = False
                 # print(predicted)
                 for p in range(len(predicted)):
-                    if p < len(target_labels):
-                        if predicted[p] == i:
-                            if(linear_separable):
-                                target_labels[p] = i
-                                was_unsep = True
-                    else:
-                        if predicted[p] == target_class:
-                            if(linear_separable):
-                                new_labels[p - len(target_labels)] = target_class
-                                was_unsep = True
-
-                # plt.scatter(X[:, 0], X[:, 1], marker='o', c=y*5, s=25, edgecolor='k')
-                # plt.show()
+                    if (linear_separable):
+                        if p < len(target_labels):
+                            if predicted[p] == i:
+                                    target_labels[p] = i
+                        else:
+                                if predicted[p] == target_class:
+                                    new_labels[p - len(target_labels)] = target_class
 
                 y[(y == target_class)] = target_labels
 
-                # print(len(new_data))
                 changed_data   = new_data[(new_labels==target_class)]
                 changed_labels = new_labels[(new_labels==target_class)]
 
-                # print(len(y))
-
-                # print(y)
                 X = np.append(X, changed_data, axis=0)
                 y = np.append(y, changed_labels, axis=0)
 
-                # print(y)
-
                 new_data = new_data[(new_labels==i)]
                 new_labels = new_labels[(new_labels==i)]
-                # print(len(y))
-
-                # if was_unsep:
-                    # print((target_data_center ,new_data_center))
-                    # print(euclidean_distance(target_data_center ,new_data_center))
 
                 # plt.scatter(X[:, 0], X[:, 1], marker='o', c=y*5, s=25, edgecolor='k')
                 # plt.show()
@@ -117,8 +104,8 @@ def make_dataset(center_box=(0, 100.0), cluster_std=1.0,
             X = np.append(X, new_data, axis=0)
             y = np.append(y, new_labels, axis=0)
 
-        plt.scatter(X[:, 0], X[:, 1], marker='o', c=y*5, s=25, edgecolor='k')
-        plt.show()
+    plt.scatter(X[:, 0], X[:, 1], marker='o', c=y*5, s=25, edgecolor='k')
+    plt.show()
 
 
     # print(X, y)
