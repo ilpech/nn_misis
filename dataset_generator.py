@@ -72,7 +72,7 @@ def make_dataset(center_box=(0, 1000.0), cluster_std=1.0,
                 perceptron.fit(x_, y_)
                 predicted = perceptron.predict(x_)
                 was_unsep = False
-                print(predicted)
+                # print(predicted)
                 for p in range(len(predicted)):
                     if p < len(target_labels):
                         if predicted[p] == i:
@@ -96,8 +96,11 @@ def make_dataset(center_box=(0, 1000.0), cluster_std=1.0,
 
                 print(len(changed_data))
 
+                print(y)
                 X = np.append(X, changed_data, axis=0)
                 y = np.append(y, changed_labels, axis=0)
+
+                print(y)
 
                 new_data = new_data[(new_labels==i)]
                 new_labels = new_labels[(new_labels==i)]
