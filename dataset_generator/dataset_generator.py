@@ -1,9 +1,13 @@
+#brief: Dataset generator for nn testing
+#author: pichugin
+#usage: python3 dataset_generator.py --dst /repositories --n-features 2 --n-samples 100000 --n-classes 40 --linear-separable True --n-clusters 1 --max-intersection-percentage 0.01 --draw True --save True
+
 import matplotlib.pyplot as plt
 import sys
 import os
+import argparse
 import numpy as np
 import math
-
 import time
 
 def euclidean_distance(first_point, second_point):
@@ -40,7 +44,7 @@ def make_dataset(n_features = 2, n_samples = 100000, n_classes = 40,
                     shift = generator.uniform(-10.0, 10.0, size=(1, n_features))
                     classes[i] = classes[int(generator.uniform(0,i-1))] + shift * generator.uniform(1,10)
                 else:
-                    shift = generator.uniform(-5.0, 5.0, size=(1, n_features))
+                    shift = generator.uniform(-7.0, 7.0, size=(1, n_features))
                     classes[i] = classes[i-1] + shift
             # new data portion
             new_data = generator.normal(loc=classes[i], scale=std,
@@ -64,7 +68,9 @@ def make_dataset(n_features = 2, n_samples = 100000, n_classes = 40,
                 predicted = perceptron.predict(x_)
                 betrayers = 0
                 if (linear_separable):
-                     for p in range(len(predicted)):
+                    if euclidean_distance(classes[i], classes[target_class]) > 15.0:
+                        continue
+                    for p in range(len(predicted)):
                         if p < len(target_labels):
                             if predicted[p] == i:
                                     target_labels[p] = i
@@ -108,10 +114,47 @@ def make_dataset(n_features = 2, n_samples = 100000, n_classes = 40,
             plt.show()
     return X,y
 
-start = time.time()
-X,y = make_dataset(n_features = 2, n_samples = 100000, n_classes = 100,
-                   linear_separable=True, n_clusters=4, max_intersection_percentage = 0.01, draw=True)
-end = time.time()
-print(end - start)
+def boolean_string(s):
+    if s not in {'False', 'True'}:
+        raise ValueError('Not a valid boolean string, use False or True')
+    return s == 'True'
 
-print(len(X))
+def dataset_to_csv(X,y,dst_dir):
+    dst = os.path.join(dst_dir, 'data.csv')
+    Xy = np.column_stack((X,y))
+    np.savetxt(dst, Xy, fmt='%f',delimiter=',')
+    print('Datasets was saved: ', dst)
+
+
+parser = argparse.ArgumentParser(
+                                description=('Dataset generator for nn testing')
+                                )
+parser.add_argument('--dst', type=str, default='')
+parser.add_argument('--n-features', type=int, default=2)
+parser.add_argument('--n-samples', type=int, default=10000)
+parser.add_argument('--n-classes', type=int, default=10)
+parser.add_argument('--linear-separable', type=boolean_string, default=True)
+parser.add_argument('--n-clusters', type=int, default=5)
+parser.add_argument('--max-intersection-percentage', type=float, default=0.1)
+parser.add_argument('--draw', type=boolean_string, default=True)
+parser.add_argument('--save', type=boolean_string, default=False)
+
+opt = parser.parse_args()
+if opt.save:
+    if not os.path.isdir(opt.dst):
+        print('Check dst {} path for saving data'.format(opt.dst))
+        sys.exit(0)
+
+start = time.time()
+X,y = make_dataset(n_features=opt.n_features, n_samples=opt.n_samples, n_classes=opt.n_classes,
+                   linear_separable=opt.linear_separable, n_clusters=opt.n_clusters,
+                   max_intersection_percentage = opt.max_intersection_percentage, draw=opt.draw)
+end = time.time()
+
+print("Generation time {:03f}".format(end - start))
+
+if opt.save:
+    dataset_to_csv(X,y, opt.dst)
+
+
+
