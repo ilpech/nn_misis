@@ -25,7 +25,7 @@ def euclidean_distance(first_point, second_point):
     return math.sqrt(sum)
 
 
-def make_dataset(center_box=(0, 1000.0), cluster_std=1.0,
+def make_dataset(center_box=(0, 100.0), cluster_std=1.0,
                  n_features = 2, n_samples = 10000, n_classes = 20,
                  linear_separable=True):
     generator = np.random.RandomState(420)
@@ -43,19 +43,20 @@ def make_dataset(center_box=(0, 1000.0), cluster_std=1.0,
             y = np.append(y, np.full(n,i), axis=0)
         else:
             # check for linear sep
-
-            shift = generator.uniform(0, 5, size=(1, n_features))
-            print(shift)
-            classes[i] = classes[i-1] + shift
+            if not linear_separable:
+                shift = generator.uniform(0, 5, size=(1, n_features))
+                # print(shift)
+                classes[i] = classes[i-1] + shift
             new_data = generator.normal(loc=classes[i], scale=std,
                                         size=(n, n_features))
             new_labels = np.full(n, i)
             new_data_center = classes[i]
 
             # sys.exit(0)
-            for target_class in range(i-1,i):
+            for target_class in range(i):
                 target_data_center = classes[target_class]
-                # if(euclidean_distance(target_data_center, new_data_center) > 5.0):
+                print(euclidean_distance(target_data_center, new_data_center))
+                # if(euclidean_distance(target_data_center, new_data_center) > 3.0):
                 #     continue
                 target = X[(y == target_class)]
                 target_labels = y[(y == target_class)]
@@ -90,21 +91,21 @@ def make_dataset(center_box=(0, 1000.0), cluster_std=1.0,
 
                 y[(y == target_class)] = target_labels
 
-                print(len(new_data))
+                # print(len(new_data))
                 changed_data   = new_data[(new_labels==target_class)]
                 changed_labels = new_labels[(new_labels==target_class)]
 
-                print(len(changed_data))
+                # print(len(y))
 
-                print(y)
+                # print(y)
                 X = np.append(X, changed_data, axis=0)
                 y = np.append(y, changed_labels, axis=0)
 
-                print(y)
+                # print(y)
 
                 new_data = new_data[(new_labels==i)]
                 new_labels = new_labels[(new_labels==i)]
-                print(len(new_data))
+                # print(len(y))
 
                 # if was_unsep:
                     # print((target_data_center ,new_data_center))
