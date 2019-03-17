@@ -2,22 +2,7 @@
 #author: pichugin
 #usage: python3 dataset_generator.py --dst /repositories --n-features 2 --n-samples 100000 --n-classes 40 --linear-separable True --n-clusters 1 --max-intersection-percentage 0.01 --draw True --save True
 
-import matplotlib.pyplot as plt
-import sys
-import os
-import argparse
-import numpy as np
-import math
-import time
-
-def euclidean_distance(first_point, second_point):
-    if first_point.shape != second_point.shape:
-        print("first_point.shape != second_point.shape")
-        return
-    sum = 0.0
-    for dim in range(len(first_point)):
-        sum += (first_point[dim] - second_point[dim])**2
-    return math.sqrt(sum)
+from project_tools import *
 
 def make_dataset(n_features = 2, n_samples = 100000, n_classes = 40,
                  linear_separable=True, n_clusters=1, max_intersection_percentage = 0.9, draw=True):
