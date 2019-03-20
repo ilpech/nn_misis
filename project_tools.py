@@ -18,6 +18,7 @@ def euclidean_distance(first_point, second_point):
 
 def nonlin_sigmoid(x, deriv=False):
     if (deriv == True):
+
         return nonlin_sigmoid(x)*(1 - nonlin_sigmoid(x))
     return 1 / (1 + np.exp(-x))
 
@@ -30,3 +31,14 @@ def draw_dataset(X,y):
         print("Drawing available only for 2 dim space")
     plt.scatter(X[:, 0], X[:, 1], marker='o', c=y, s=25, edgecolor='k')
     plt.show()
+
+def read_data_csv(path):
+    try:
+        if not os.path.isfile(path):
+            raise NameError
+    except NameError:
+        print('Check csv path', path)
+    data = np.genfromtxt(path, delimiter=',')
+    X = data[:,:-1]
+    y = data[:,-1:]
+    return X, y
