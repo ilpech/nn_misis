@@ -26,11 +26,11 @@ def get_data_raw(dataset_path, batch_size, num_workers):
     inp_size = (2272,1704)
 
     transform_train = transforms.Compose([
-        transforms.Resize(inp_shape),
+        transforms.Resize(inp_size),
         transforms.ToTensor(),
     ])
     transform_test = transforms.Compose([
-        transforms.Resize(inp_shape),
+        transforms.Resize(inp_size),
         transforms.ToTensor(),
     ])
 
