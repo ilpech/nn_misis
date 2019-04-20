@@ -23,10 +23,14 @@ def get_data_raw(dataset_path, batch_size, num_workers):
     val_path = os.path.join(dataset_path, 'val')
     test_path = os.path.join(dataset_path, 'test')
 
+    inp_size = (2272,1704)
+
     transform_train = transforms.Compose([
+        transforms.Resize(inp_shape),
         transforms.ToTensor(),
     ])
     transform_test = transforms.Compose([
+        transforms.Resize(inp_shape),
         transforms.ToTensor(),
     ])
 
