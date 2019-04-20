@@ -23,7 +23,7 @@ def get_data_raw(dataset_path, batch_size, num_workers):
     val_path = os.path.join(dataset_path, 'val')
     test_path = os.path.join(dataset_path, 'test')
 
-    inp_size = (2272,1704)
+    inp_size = (227, 170)
 
     transform_train = transforms.Compose([
         transforms.Resize(inp_size),
@@ -77,7 +77,7 @@ elif ctx_type == 'gpu':
 classes_list = sorted(os.listdir(os.path.join(dataset_path, 'train')))
 classes = len(classes_list)
 
-net = cifar_wide_resnet.cifar_wideresnet16_10(classes=classes)
+net = cifar_wide_resnet.cifar_wideresnet16_2(classes=classes)
 net.collect_params().initialize(init.Xavier(magnitude=2.24), ctx = ctx)
 net.collect_params().reset_ctx(ctx)
 net.hybridize()
@@ -94,6 +94,7 @@ if train and save:
     for class_name in classes_list:
         dict.write(class_name + '\n')
     log_file = os.path.join(params_path, net_name + '_' + model_name + '_logs.txt')
+    metric_file = os.path.join(params_path, net_name + '_' + model_name + '_metricsi.txt')
     if os.path.isfile(log_file):
         rewrite = input('log file exists want to rewrite (y/n): ')
         if rewrite != 'y':
@@ -102,7 +103,15 @@ if train and save:
     log = open(log_file, 'w')
     for arg in range(len(sys.argv)):
         log.write(sys.argv[arg] + '\n')
-
+    if os.path.isfile(metric_file):
+        rewrite = input('metric file exists want to rewrite (y/n): ')
+        if rewrite != 'y':
+            print('Change network name')
+            raise NameError
+    training_metrics = open(metric_file, 'w')
+    training_metrics.write('train-error val_error' + '\n')
+    for arg in range(len(sys.argv)):
+        log.write(sys.argv[arg] + '\n')
 if resume_epoch > 0:
     params_f = os.path.join(params_path,
                             '{}_{:03d}__{}.params'.format(
@@ -164,12 +173,12 @@ if train:
             save_best_val_acc = False
 
         train_history.update([1-train_acc, 1-val_acc])
-
         scores = ('[Epoch {:d}] Train-acc: {:.3f}, loss: {:.3f} | Val-acc: {:.3f} | time: {:.1f}').format(
                 epoch, train_acc, train_loss, val_acc, time.time() - tic)
         print(scores)
         if save:
             log.write(scores + '\n' )
+            training_metrics.write('{} {}\n'.format(1-train_acc,1-val_acc))
         if epoch != 0:
             if (epoch+1) % log_interval == 0 or save_best_val_acc:
                 if save_best_val_acc:
@@ -177,11 +186,11 @@ if train:
                     print(val_acc_save_m)
                     if save:
                         log.write(val_acc_save_m)
-                    for i in range(classes):
-                        per_class_acc = '{}={}'.format(classes_list[i], test_on_single_class(net, val_data, ctx, i)[1])
-                        print(per_class_acc)
-                        if save:
-                            log.write(per_class_acc)
+                    #for i in range(classes):
+                       # per_class_acc = '{}={}'.format(classes_list[i], test_on_single_class(net, val_data, ctx, i)[1])
+                       # print(per_class_acc)
+                       # if save:
+                       #     log.write(per_class_acc)
                 else:
                     print('Params saved on epoch {}'.format(epoch+1))
                 net.save_parameters(os.path.join(
