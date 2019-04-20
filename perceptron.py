@@ -1,22 +1,28 @@
 from project_tools import *
 
-class Perceptron:
+#add sigmoid act func
+#add biases
 
-    def __init__(self, n_layers=3, n_neurons_per_layer=100, classes=2):
+class Perceptron:
+    def __init__(self, n_layers=3, n_neurons_per_layer=10, classes=2, features=2, lr=0.1):
         self.__layers = []
         self.n_layers = n_layers
         self.n_neurons_per_layer = n_neurons_per_layer
         self.classes = classes
         self.answer = 'n_classes'
-        # super(Perceptron, self).__init__(n_layers, n_neurons_per_layer, classes)
+        self.features = features
+        self.lr = lr
         self.make_layers()
 
     def make_layers(self):
-        inp_layer = 2 * np.random.random((self.classes, self.n_neurons_per_layer)) - 1
-        reg_layer = 2 * np.random.random((self.n_neurons_per_layer, self.n_neurons_per_layer)) - 1
+        inp_layer = 2 * np.random.random((self.features, self.n_neurons_per_layer)) - 1
+        reg_layer = 2 * np.random.random((self.n_neurons_per_layer,
+                                          self.n_neurons_per_layer)) - 1
         ans_layer = None
         # TODO: add two anw type 1, k<n
         if self.answer == 'n_classes':
+            ans_layer = 2 * np.random.random((self.n_neurons_per_layer, self.classes)) - 1
+        if self.answer == 'one_hot_coding':
             ans_layer = 2 * np.random.random((self.n_neurons_per_layer, 1)) - 1
         for layer in range(self.n_layers):
             # todo: add case when only one layer : input -> output
@@ -33,25 +39,12 @@ class Perceptron:
     def __nonlin_sigmoid(x, deriv=False):
         if (deriv == True):
             return nonlin_sigmoid(x)*(1 - nonlin_sigmoid(x))
-        try:
-            return 1 / (1 + np.exp(-x))
-        except RuntimeWarning:
-            print(x)
+        return 1 / (1 + np.exp(-x))
 
     @staticmethod
-    def nonlin_relu(x, deriv=False):
-        print(x)
-        for i in range(len(x)):
-            if (deriv == True):
-                if x[i] > 0:
-                    x[i] = 1
-                else:
-                    x[i] = 0
-            if x[i] > 0:
-                x[i] = x[i]
-            else:
-                x[i] =0
-        return x
+    def __softmax(A):  
+        expA = np.exp(A)
+        return expA / expA.sum(axis=1, keepdims=True)
 
     def forward(self, x):
         for layer in self.__layers:
@@ -71,39 +64,109 @@ class Perceptron:
         for layer in reversed(range(len(self.__layers))):
             if layer == len(self.__layers) - 1:
                 errors[layer] = y - answs[layer]
+                # print(y)
+                # print(answs[layer])
+                # print(errors[layer])
             else:
                 errors[layer] = deltas[layer+1].dot(self.__layers[layer+1].T)
             deltas[layer] = errors[layer] * self.__nonlin_sigmoid(answs[layer], deriv=True)
+            # print(deltas[layer])
+            # print(self.__layers)
+            # sys.exit(0)
 
         for layer in range(len(self.__layers)):
             if layer != 0:
-                self.__layers[layer] += answs[layer-1].T.dot(deltas[layer])
+                self.__layers[layer] += self.lr * answs[layer-1].T.dot(deltas[layer])
             else:
-                self.__layers[layer] += inp.T.dot(deltas[layer])
+                self.__layers[layer] += self.lr * inp.T.dot(deltas[layer])
 
         return y - answs[-1]
 
+        # return answs[-1]
 
 
-p = Perceptron(n_layers=3, n_neurons_per_layer=2, classes=2)
-X, y = read_data_csv('/repositories/data_2_classes.csv')
 
-print(X.shape)
+p = Perceptron(n_layers=3, n_neurons_per_layer=10, classes=1, features=2, lr=0.1)
+X, y = read_data_csv('/repositories/2classes_test.csv')
+
+# print(y)
+#
+# sys.exit(0)
+
+X = (X - np.mean(X))/np.var(X)
+
+# y = (y - np.mean(y))/np.var(y)
+#
+# print(y)
+#
+# sys.exit(0)
+
+# print(len(X))
+
+# X = np.array([[0,0],
+#               [0,1],
+#               [1,0],
+#               [1,1]])
+#
+# y = np.array([[0,1,1,0]]).T
+
+# X = np.array([  [0,0,1],
+#                 [0,1,1],
+#                 [1,0,1],
+#                 [1,1,1] ])
+#
+# # выходные данные
+# y = np.array([[1,0,1,1]]).T
+
+# print(y)
+# sys.exit(0)
+
+# print(np.array([X[0]]))
+
+
 
 # p.make_layers()
 
-np.seterr(all='ignore')
+# np.seterr(all='ignore')
 
-for i in range(10000000):
-    e = p.backward(X, y)
-    if (i % 10000) == 0:
-        print("Error:", str(np.mean(np.abs(e))))
+for i in range(100):
+    for sample in range(len(X)):
+        x_ = np.array([X[sample]])
+        y_ = np.array([y[sample]])
+        # e = p.backward(x_, y_)
+
+        e = p.backward(X, y)
+        print(str(np.mean(np.abs(e))))
+# print(np.rint(p.forward(X)) == y)
+#
+# print(p.forward(np.array([[0,0]])))
+
+        # if (i % 1) == 0:
+        #     print("Error:", str(np.mean(np.abs(e))))
+
+
+
+
+
+X_t, y_t = read_data_csv('/repositories/data.csv')
+# X_t, y_t = read_data_csv('/repositories/5classes.csv')
+#
+
+X_t_norm = (X_t - np.mean(X_t))/np.var(X_t)
+answ = p.forward(X_t_norm)
+
+plt.scatter(X_t[:, 0], X_t[:, 1], marker='o', c=y_t[:,0], s=25, edgecolor='k')
+plt.show()
+
+plt.scatter(X_t[:, 0], X_t[:, 1], marker='o', c=np.rint(answ)[:,0], s=25, edgecolor='k')
+plt.show()
+
+# print(y_t)
+# print(answ)
+
+print(y_t==np.rint(answ))
 
 sys.exit(0)
-
-
-X, y = read_data_csv('/repositories/data_2_classes.csv')
-X_t, y_t = read_data_csv('/repositories/data.csv')
 
 # draw_dataset(X,y)
 # sys.exit(0)

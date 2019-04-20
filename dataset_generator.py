@@ -1,6 +1,6 @@
 #brief: Dataset generator for nn testing
 #author: pichugin
-#usage: python3 dataset_generator.py --dst /repositories --n-features 2 --n-samples 100000 --n-classes 40 --linear-separable True --n-clusters 1 --max-intersection-percentage 0.01 --draw True --save True
+#usage: python3 dataset_generator.py --dst /repositories --name dataset_sample --n-features 2 --n-samples 100000 --n-classes 40 --linear-separable True --n-clusters 1 --max-intersection-percentage 0.01 --draw True --save True
 
 from project_tools import *
 
@@ -104,8 +104,8 @@ def boolean_string(s):
         raise ValueError('Not a valid boolean string, use False or True')
     return s == 'True'
 
-def dataset_to_csv(X,y,dst_dir):
-    dst = os.path.join(dst_dir, 'data.csv')
+def dataset_to_csv(X,y,dst_dir,file_name):
+    dst = os.path.join(dst_dir, file_name + '.csv')
     Xy = np.column_stack((X,y))
     np.savetxt(dst, Xy, fmt='%f',delimiter=',')
     print('Datasets was saved: ', dst)
@@ -115,6 +115,7 @@ parser = argparse.ArgumentParser(
                                 description=('Dataset generator for nn testing')
                                 )
 parser.add_argument('--dst', type=str, default='')
+parser.add_argument('--name', type=str, default='')
 parser.add_argument('--n-features', type=int, default=2)
 parser.add_argument('--n-samples', type=int, default=10000)
 parser.add_argument('--n-classes', type=int, default=10)
@@ -139,7 +140,4 @@ end = time.time()
 print("Generation time {:03f}".format(end - start))
 
 if opt.save:
-    dataset_to_csv(X,y, opt.dst)
-
-
-
+    dataset_to_csv(X,y, opt.dst, opt.name)
