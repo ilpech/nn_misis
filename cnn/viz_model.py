@@ -1,26 +1,13 @@
+# %load cnn/viz_model.py
 import argparse
 import os
 import mxnet as mx
 
-parser = argparse.ArgumentParser(
-                                description=('script for sorting snippets by network classes')
-                                )
-parser.add_argument(
-                    '--params-dir', type=str,
-                    help='set path to dir with params & struct'
-                    )
-parser.add_argument(
-                    '--net-name', type=str,
-                    help='set net name'
-                    )
-opt = parser.parse_args()
+def showModel(params_dir, net_name):
+    sym_path = os.path.join(params_dir, '{}-symbol.json'.format(net_name))
+    net = mx.symbol.load(sym_path)
 
-params_dir  = opt.params_dir
-net_name = opt.net_name
+    mx.viz.print_summary(symbol=net)
 
-ctx = [mx.cpu()]
-sym_path = os.path.join(params_dir, '{}-symbol.json'.format(net_name))
-net = mx.symbol.load(sym_path)
-
-v = mx.viz.plot_network(symbol=net)
-v.view()
+print("Модель для работы с большими картинками")
+showModel("res/big-pics", "gel_cls.002")
