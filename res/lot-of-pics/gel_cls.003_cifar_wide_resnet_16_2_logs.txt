@@ -1,0 +1,288 @@
+train_classifier.py
+--train
+True
+--model-name
+cifar_wide_resnet_16_2
+--net-name
+gel_cls.003
+--params-dir
+/home/pichugin/datasets/models
+--dataset-path
+/home/pichugin/datasets/cutted
+--ctx
+gpu
+--batch-size
+64
+--epochs
+300
+--save
+True
+--ssh
+True
+--lr
+0.1
+--lr-decay
+0.1
+--lr-decay-interval
+40
+--device-index
+0
+train_classifier.py
+--train
+True
+--model-name
+cifar_wide_resnet_16_2
+--net-name
+gel_cls.003
+--params-dir
+/home/pichugin/datasets/models
+--dataset-path
+/home/pichugin/datasets/cutted
+--ctx
+gpu
+--batch-size
+64
+--epochs
+300
+--save
+True
+--ssh
+True
+--lr
+0.1
+--lr-decay
+0.1
+--lr-decay-interval
+40
+--device-index
+0
+[Epoch 0] Train-acc: 0.328, loss: 2.797 | Val-acc: 0.306 | time: 687.3
+[Epoch 1] Train-acc: 0.373, loss: 2.750 | Val-acc: 0.400 | time: 683.0
+Params saved on epoch 2, new best val acc founded[Epoch 2] Train-acc: 0.387, loss: 2.737 | Val-acc: 0.403 | time: 682.0
+Params saved on epoch 3, new best val acc founded[Epoch 3] Train-acc: 0.393, loss: 2.732 | Val-acc: 0.403 | time: 679.7
+Params saved on epoch 4, new best val acc founded[Epoch 4] Train-acc: 0.397, loss: 2.726 | Val-acc: 0.404 | time: 643.8
+Params saved on epoch 5, new best val acc founded[Epoch 5] Train-acc: 0.410, loss: 2.714 | Val-acc: 0.424 | time: 638.8
+Params saved on epoch 6, new best val acc founded[Epoch 6] Train-acc: 0.448, loss: 2.676 | Val-acc: 0.473 | time: 637.0
+Params saved on epoch 7, new best val acc founded[Epoch 7] Train-acc: 0.455, loss: 2.668 | Val-acc: 0.475 | time: 635.5
+Params saved on epoch 8, new best val acc founded[Epoch 8] Train-acc: 0.463, loss: 2.661 | Val-acc: 0.462 | time: 635.3
+[Epoch 9] Train-acc: 0.468, loss: 2.656 | Val-acc: 0.476 | time: 635.2
+Params saved on epoch 10, new best val acc founded[Epoch 10] Train-acc: 0.481, loss: 2.644 | Val-acc: 0.438 | time: 635.5
+[Epoch 11] Train-acc: 0.491, loss: 2.633 | Val-acc: 0.477 | time: 635.3
+Params saved on epoch 12, new best val acc founded[Epoch 12] Train-acc: 0.495, loss: 2.630 | Val-acc: 0.473 | time: 635.3
+[Epoch 13] Train-acc: 0.499, loss: 2.625 | Val-acc: 0.483 | time: 635.5
+Params saved on epoch 14, new best val acc founded[Epoch 14] Train-acc: 0.504, loss: 2.621 | Val-acc: 0.495 | time: 636.0
+Params saved on epoch 15, new best val acc founded[Epoch 15] Train-acc: 0.505, loss: 2.620 | Val-acc: 0.516 | time: 635.5
+Params saved on epoch 16, new best val acc founded[Epoch 16] Train-acc: 0.513, loss: 2.612 | Val-acc: 0.517 | time: 635.4
+Params saved on epoch 17, new best val acc founded[Epoch 17] Train-acc: 0.511, loss: 2.613 | Val-acc: 0.504 | time: 635.2
+[Epoch 18] Train-acc: 0.515, loss: 2.610 | Val-acc: 0.561 | time: 635.0
+Params saved on epoch 19, new best val acc founded[Epoch 19] Train-acc: 0.518, loss: 2.606 | Val-acc: 0.497 | time: 635.2
+[Epoch 20] Train-acc: 0.523, loss: 2.602 | Val-acc: 0.527 | time: 635.2
+[Epoch 21] Train-acc: 0.526, loss: 2.599 | Val-acc: 0.481 | time: 635.2
+[Epoch 22] Train-acc: 0.526, loss: 2.599 | Val-acc: 0.518 | time: 635.2
+[Epoch 23] Train-acc: 0.527, loss: 2.597 | Val-acc: 0.524 | time: 634.6
+[Epoch 24] Train-acc: 0.536, loss: 2.591 | Val-acc: 0.527 | time: 636.2
+[Epoch 25] Train-acc: 0.542, loss: 2.583 | Val-acc: 0.574 | time: 634.6
+Params saved on epoch 26, new best val acc founded[Epoch 26] Train-acc: 0.548, loss: 2.578 | Val-acc: 0.543 | time: 634.9
+[Epoch 27] Train-acc: 0.548, loss: 2.577 | Val-acc: 0.532 | time: 634.6
+[Epoch 28] Train-acc: 0.555, loss: 2.571 | Val-acc: 0.505 | time: 635.5
+[Epoch 29] Train-acc: 0.553, loss: 2.572 | Val-acc: 0.548 | time: 634.6
+[Epoch 30] Train-acc: 0.553, loss: 2.572 | Val-acc: 0.503 | time: 634.4
+[Epoch 31] Train-acc: 0.562, loss: 2.564 | Val-acc: 0.534 | time: 635.3
+[Epoch 32] Train-acc: 0.555, loss: 2.570 | Val-acc: 0.545 | time: 634.3
+[Epoch 33] Train-acc: 0.560, loss: 2.565 | Val-acc: 0.527 | time: 634.7
+[Epoch 34] Train-acc: 0.565, loss: 2.561 | Val-acc: 0.509 | time: 633.5
+[Epoch 35] Train-acc: 0.566, loss: 2.559 | Val-acc: 0.536 | time: 633.6
+[Epoch 36] Train-acc: 0.567, loss: 2.559 | Val-acc: 0.549 | time: 633.1
+[Epoch 37] Train-acc: 0.568, loss: 2.558 | Val-acc: 0.542 | time: 633.9
+[Epoch 38] Train-acc: 0.574, loss: 2.552 | Val-acc: 0.507 | time: 633.1
+[Epoch 39] Train-acc: 0.573, loss: 2.553 | Val-acc: 0.519 | time: 633.7
+[Epoch 40] Train-acc: 0.607, loss: 2.519 | Val-acc: 0.560 | time: 633.0
+[Epoch 41] Train-acc: 0.619, loss: 2.507 | Val-acc: 0.564 | time: 633.0
+[Epoch 42] Train-acc: 0.623, loss: 2.504 | Val-acc: 0.563 | time: 633.1
+[Epoch 43] Train-acc: 0.629, loss: 2.499 | Val-acc: 0.567 | time: 633.0
+[Epoch 44] Train-acc: 0.633, loss: 2.495 | Val-acc: 0.571 | time: 633.1
+[Epoch 45] Train-acc: 0.634, loss: 2.494 | Val-acc: 0.546 | time: 633.0
+[Epoch 46] Train-acc: 0.636, loss: 2.492 | Val-acc: 0.557 | time: 633.2
+[Epoch 47] Train-acc: 0.637, loss: 2.490 | Val-acc: 0.556 | time: 632.7
+[Epoch 48] Train-acc: 0.639, loss: 2.488 | Val-acc: 0.569 | time: 632.6
+[Epoch 49] Train-acc: 0.644, loss: 2.485 | Val-acc: 0.557 | time: 632.7
+[Epoch 50] Train-acc: 0.643, loss: 2.485 | Val-acc: 0.572 | time: 633.1
+[Epoch 51] Train-acc: 0.646, loss: 2.482 | Val-acc: 0.561 | time: 632.7
+[Epoch 52] Train-acc: 0.645, loss: 2.482 | Val-acc: 0.552 | time: 633.8
+[Epoch 53] Train-acc: 0.647, loss: 2.481 | Val-acc: 0.553 | time: 632.9
+[Epoch 54] Train-acc: 0.647, loss: 2.480 | Val-acc: 0.562 | time: 632.9
+[Epoch 55] Train-acc: 0.649, loss: 2.479 | Val-acc: 0.563 | time: 633.2
+[Epoch 56] Train-acc: 0.650, loss: 2.478 | Val-acc: 0.558 | time: 633.5
+[Epoch 57] Train-acc: 0.650, loss: 2.477 | Val-acc: 0.556 | time: 632.7
+[Epoch 58] Train-acc: 0.651, loss: 2.476 | Val-acc: 0.547 | time: 632.7
+[Epoch 59] Train-acc: 0.653, loss: 2.474 | Val-acc: 0.533 | time: 632.0
+[Epoch 60] Train-acc: 0.655, loss: 2.472 | Val-acc: 0.570 | time: 632.1
+[Epoch 61] Train-acc: 0.666, loss: 2.464 | Val-acc: 0.570 | time: 632.2
+[Epoch 62] Train-acc: 0.680, loss: 2.452 | Val-acc: 0.583 | time: 632.5
+Params saved on epoch 63, new best val acc founded[Epoch 63] Train-acc: 0.683, loss: 2.446 | Val-acc: 0.586 | time: 632.1
+Params saved on epoch 64, new best val acc founded[Epoch 64] Train-acc: 0.686, loss: 2.444 | Val-acc: 0.577 | time: 632.3
+[Epoch 65] Train-acc: 0.685, loss: 2.444 | Val-acc: 0.604 | time: 632.0
+Params saved on epoch 66, new best val acc founded[Epoch 66] Train-acc: 0.688, loss: 2.440 | Val-acc: 0.589 | time: 631.4
+[Epoch 67] Train-acc: 0.691, loss: 2.438 | Val-acc: 0.569 | time: 632.0
+[Epoch 68] Train-acc: 0.690, loss: 2.439 | Val-acc: 0.605 | time: 632.1
+Params saved on epoch 69, new best val acc founded[Epoch 69] Train-acc: 0.692, loss: 2.437 | Val-acc: 0.576 | time: 632.0
+[Epoch 70] Train-acc: 0.693, loss: 2.436 | Val-acc: 0.578 | time: 632.2
+[Epoch 71] Train-acc: 0.696, loss: 2.433 | Val-acc: 0.595 | time: 632.8
+[Epoch 72] Train-acc: 0.702, loss: 2.428 | Val-acc: 0.572 | time: 632.4
+[Epoch 73] Train-acc: 0.710, loss: 2.420 | Val-acc: 0.605 | time: 631.1
+Params saved on epoch 74, new best val acc founded[Epoch 74] Train-acc: 0.725, loss: 2.406 | Val-acc: 0.605 | time: 630.4
+[Epoch 75] Train-acc: 0.731, loss: 2.400 | Val-acc: 0.593 | time: 630.5
+[Epoch 76] Train-acc: 0.736, loss: 2.395 | Val-acc: 0.585 | time: 630.3
+[Epoch 77] Train-acc: 0.734, loss: 2.395 | Val-acc: 0.597 | time: 631.8
+[Epoch 78] Train-acc: 0.738, loss: 2.392 | Val-acc: 0.604 | time: 631.8
+[Epoch 79] Train-acc: 0.740, loss: 2.390 | Val-acc: 0.591 | time: 632.1
+[Epoch 80] Train-acc: 0.757, loss: 2.373 | Val-acc: 0.599 | time: 632.7
+[Epoch 81] Train-acc: 0.765, loss: 2.366 | Val-acc: 0.609 | time: 632.4
+Params saved on epoch 82, new best val acc founded[Epoch 82] Train-acc: 0.765, loss: 2.365 | Val-acc: 0.606 | time: 632.6
+[Epoch 83] Train-acc: 0.767, loss: 2.363 | Val-acc: 0.606 | time: 633.1
+[Epoch 84] Train-acc: 0.768, loss: 2.362 | Val-acc: 0.597 | time: 634.0
+[Epoch 85] Train-acc: 0.769, loss: 2.362 | Val-acc: 0.603 | time: 633.5
+[Epoch 86] Train-acc: 0.770, loss: 2.361 | Val-acc: 0.611 | time: 633.0
+Params saved on epoch 87, new best val acc founded[Epoch 87] Train-acc: 0.770, loss: 2.360 | Val-acc: 0.607 | time: 633.0
+[Epoch 88] Train-acc: 0.771, loss: 2.360 | Val-acc: 0.612 | time: 633.7
+Params saved on epoch 89, new best val acc founded[Epoch 89] Train-acc: 0.771, loss: 2.360 | Val-acc: 0.606 | time: 633.5
+[Epoch 90] Train-acc: 0.772, loss: 2.359 | Val-acc: 0.607 | time: 633.2
+[Epoch 91] Train-acc: 0.772, loss: 2.360 | Val-acc: 0.617 | time: 633.7
+Params saved on epoch 92, new best val acc founded[Epoch 92] Train-acc: 0.773, loss: 2.358 | Val-acc: 0.608 | time: 633.9
+[Epoch 93] Train-acc: 0.773, loss: 2.358 | Val-acc: 0.607 | time: 633.7
+[Epoch 94] Train-acc: 0.774, loss: 2.357 | Val-acc: 0.601 | time: 634.1
+[Epoch 95] Train-acc: 0.774, loss: 2.357 | Val-acc: 0.611 | time: 634.4
+[Epoch 96] Train-acc: 0.775, loss: 2.356 | Val-acc: 0.612 | time: 634.8
+[Epoch 97] Train-acc: 0.774, loss: 2.357 | Val-acc: 0.609 | time: 635.1
+[Epoch 98] Train-acc: 0.776, loss: 2.355 | Val-acc: 0.595 | time: 637.3
+[Epoch 99] Train-acc: 0.776, loss: 2.355 | Val-acc: 0.613 | time: 635.4
+[Epoch 100] Train-acc: 0.775, loss: 2.356 | Val-acc: 0.607 | time: 635.8
+[Epoch 101] Train-acc: 0.777, loss: 2.354 | Val-acc: 0.604 | time: 635.5
+[Epoch 102] Train-acc: 0.778, loss: 2.354 | Val-acc: 0.601 | time: 636.0
+[Epoch 103] Train-acc: 0.778, loss: 2.353 | Val-acc: 0.613 | time: 635.8
+[Epoch 104] Train-acc: 0.777, loss: 2.354 | Val-acc: 0.607 | time: 635.9
+[Epoch 105] Train-acc: 0.778, loss: 2.353 | Val-acc: 0.604 | time: 636.0
+[Epoch 106] Train-acc: 0.778, loss: 2.353 | Val-acc: 0.605 | time: 636.3
+[Epoch 107] Train-acc: 0.780, loss: 2.351 | Val-acc: 0.598 | time: 636.1
+[Epoch 108] Train-acc: 0.780, loss: 2.352 | Val-acc: 0.598 | time: 636.3
+[Epoch 109] Train-acc: 0.780, loss: 2.352 | Val-acc: 0.616 | time: 636.8
+[Epoch 110] Train-acc: 0.780, loss: 2.351 | Val-acc: 0.613 | time: 637.0
+[Epoch 111] Train-acc: 0.779, loss: 2.351 | Val-acc: 0.599 | time: 637.2
+[Epoch 112] Train-acc: 0.779, loss: 2.351 | Val-acc: 0.602 | time: 637.0
+[Epoch 113] Train-acc: 0.780, loss: 2.351 | Val-acc: 0.608 | time: 637.1
+[Epoch 114] Train-acc: 0.782, loss: 2.349 | Val-acc: 0.609 | time: 637.5
+[Epoch 115] Train-acc: 0.782, loss: 2.349 | Val-acc: 0.607 | time: 637.6
+[Epoch 116] Train-acc: 0.782, loss: 2.349 | Val-acc: 0.602 | time: 638.7
+[Epoch 117] Train-acc: 0.782, loss: 2.349 | Val-acc: 0.597 | time: 639.2
+[Epoch 118] Train-acc: 0.782, loss: 2.349 | Val-acc: 0.625 | time: 640.0
+Params saved on epoch 119, new best val acc founded[Epoch 119] Train-acc: 0.783, loss: 2.348 | Val-acc: 0.618 | time: 640.4
+[Epoch 120] Train-acc: 0.785, loss: 2.346 | Val-acc: 0.609 | time: 640.8
+[Epoch 121] Train-acc: 0.787, loss: 2.344 | Val-acc: 0.613 | time: 641.1
+[Epoch 122] Train-acc: 0.786, loss: 2.344 | Val-acc: 0.611 | time: 640.5
+[Epoch 123] Train-acc: 0.786, loss: 2.344 | Val-acc: 0.617 | time: 640.6
+[Epoch 124] Train-acc: 0.785, loss: 2.345 | Val-acc: 0.601 | time: 641.0
+[Epoch 125] Train-acc: 0.787, loss: 2.344 | Val-acc: 0.608 | time: 640.5
+[Epoch 126] Train-acc: 0.788, loss: 2.344 | Val-acc: 0.610 | time: 640.5
+[Epoch 127] Train-acc: 0.787, loss: 2.343 | Val-acc: 0.610 | time: 640.9
+[Epoch 128] Train-acc: 0.787, loss: 2.344 | Val-acc: 0.604 | time: 640.0
+[Epoch 129] Train-acc: 0.787, loss: 2.344 | Val-acc: 0.614 | time: 639.8
+[Epoch 130] Train-acc: 0.787, loss: 2.344 | Val-acc: 0.606 | time: 640.1
+[Epoch 131] Train-acc: 0.787, loss: 2.344 | Val-acc: 0.613 | time: 639.6
+[Epoch 132] Train-acc: 0.787, loss: 2.344 | Val-acc: 0.603 | time: 639.5
+[Epoch 133] Train-acc: 0.788, loss: 2.343 | Val-acc: 0.611 | time: 639.1
+[Epoch 134] Train-acc: 0.787, loss: 2.344 | Val-acc: 0.621 | time: 639.0
+[Epoch 135] Train-acc: 0.787, loss: 2.344 | Val-acc: 0.613 | time: 638.6
+[Epoch 136] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.612 | time: 638.7
+[Epoch 137] Train-acc: 0.787, loss: 2.343 | Val-acc: 0.609 | time: 638.5
+[Epoch 138] Train-acc: 0.787, loss: 2.344 | Val-acc: 0.609 | time: 638.2
+[Epoch 139] Train-acc: 0.788, loss: 2.343 | Val-acc: 0.610 | time: 638.3
+[Epoch 140] Train-acc: 0.787, loss: 2.344 | Val-acc: 0.610 | time: 638.5
+[Epoch 141] Train-acc: 0.788, loss: 2.343 | Val-acc: 0.619 | time: 638.5
+[Epoch 142] Train-acc: 0.787, loss: 2.344 | Val-acc: 0.616 | time: 637.9
+[Epoch 143] Train-acc: 0.787, loss: 2.344 | Val-acc: 0.620 | time: 638.1
+[Epoch 144] Train-acc: 0.787, loss: 2.343 | Val-acc: 0.614 | time: 638.2
+[Epoch 145] Train-acc: 0.788, loss: 2.343 | Val-acc: 0.612 | time: 637.8
+[Epoch 146] Train-acc: 0.788, loss: 2.343 | Val-acc: 0.612 | time: 637.5
+[Epoch 147] Train-acc: 0.788, loss: 2.343 | Val-acc: 0.607 | time: 637.4
+[Epoch 148] Train-acc: 0.788, loss: 2.343 | Val-acc: 0.613 | time: 637.8
+[Epoch 149] Train-acc: 0.788, loss: 2.342 | Val-acc: 0.604 | time: 637.2
+[Epoch 150] Train-acc: 0.787, loss: 2.344 | Val-acc: 0.603 | time: 637.2
+[Epoch 151] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.613 | time: 637.3
+[Epoch 152] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.609 | time: 637.0
+[Epoch 153] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.615 | time: 637.1
+[Epoch 154] Train-acc: 0.788, loss: 2.343 | Val-acc: 0.611 | time: 636.3
+[Epoch 155] Train-acc: 0.790, loss: 2.342 | Val-acc: 0.611 | time: 636.4
+[Epoch 156] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.610 | time: 636.3
+[Epoch 157] Train-acc: 0.787, loss: 2.344 | Val-acc: 0.609 | time: 636.6
+[Epoch 158] Train-acc: 0.788, loss: 2.342 | Val-acc: 0.605 | time: 636.5
+[Epoch 159] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.606 | time: 636.1
+[Epoch 160] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.606 | time: 636.1
+[Epoch 161] Train-acc: 0.790, loss: 2.342 | Val-acc: 0.610 | time: 635.4
+[Epoch 162] Train-acc: 0.788, loss: 2.342 | Val-acc: 0.615 | time: 635.6
+[Epoch 163] Train-acc: 0.790, loss: 2.341 | Val-acc: 0.604 | time: 636.5
+[Epoch 164] Train-acc: 0.790, loss: 2.341 | Val-acc: 0.613 | time: 635.0
+[Epoch 165] Train-acc: 0.788, loss: 2.343 | Val-acc: 0.607 | time: 635.0
+[Epoch 166] Train-acc: 0.790, loss: 2.341 | Val-acc: 0.609 | time: 635.3
+[Epoch 167] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.614 | time: 635.3
+[Epoch 168] Train-acc: 0.790, loss: 2.342 | Val-acc: 0.609 | time: 634.9
+[Epoch 169] Train-acc: 0.791, loss: 2.341 | Val-acc: 0.612 | time: 635.2
+[Epoch 170] Train-acc: 0.788, loss: 2.343 | Val-acc: 0.603 | time: 634.7
+[Epoch 171] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.605 | time: 635.5
+[Epoch 172] Train-acc: 0.790, loss: 2.341 | Val-acc: 0.612 | time: 634.7
+[Epoch 173] Train-acc: 0.790, loss: 2.341 | Val-acc: 0.612 | time: 635.1
+[Epoch 174] Train-acc: 0.788, loss: 2.343 | Val-acc: 0.615 | time: 634.6
+[Epoch 175] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.602 | time: 634.5
+[Epoch 176] Train-acc: 0.790, loss: 2.341 | Val-acc: 0.617 | time: 634.6
+[Epoch 177] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.603 | time: 634.1
+[Epoch 178] Train-acc: 0.790, loss: 2.341 | Val-acc: 0.608 | time: 634.0
+[Epoch 179] Train-acc: 0.790, loss: 2.341 | Val-acc: 0.613 | time: 634.6
+[Epoch 180] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.610 | time: 634.0
+[Epoch 181] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.607 | time: 633.6
+[Epoch 182] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.608 | time: 633.8
+[Epoch 183] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.613 | time: 634.1
+[Epoch 184] Train-acc: 0.789, loss: 2.341 | Val-acc: 0.617 | time: 633.8
+[Epoch 185] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.613 | time: 633.6
+[Epoch 186] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.611 | time: 633.7
+[Epoch 187] Train-acc: 0.790, loss: 2.341 | Val-acc: 0.611 | time: 633.7
+[Epoch 188] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.609 | time: 633.5
+[Epoch 189] Train-acc: 0.790, loss: 2.341 | Val-acc: 0.608 | time: 633.2
+[Epoch 190] Train-acc: 0.790, loss: 2.341 | Val-acc: 0.615 | time: 633.7
+[Epoch 191] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.604 | time: 633.1
+[Epoch 192] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.609 | time: 633.0
+[Epoch 193] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.610 | time: 633.0
+[Epoch 194] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.610 | time: 632.6
+[Epoch 195] Train-acc: 0.790, loss: 2.342 | Val-acc: 0.605 | time: 632.1
+[Epoch 196] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.601 | time: 632.6
+[Epoch 197] Train-acc: 0.790, loss: 2.341 | Val-acc: 0.613 | time: 632.0
+[Epoch 198] Train-acc: 0.790, loss: 2.341 | Val-acc: 0.608 | time: 632.5
+[Epoch 199] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.615 | time: 632.8
+[Epoch 200] Train-acc: 0.788, loss: 2.343 | Val-acc: 0.618 | time: 632.3
+[Epoch 201] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.603 | time: 632.9
+[Epoch 202] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.612 | time: 632.3
+[Epoch 203] Train-acc: 0.788, loss: 2.343 | Val-acc: 0.613 | time: 631.4
+[Epoch 204] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.611 | time: 630.4
+[Epoch 205] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.612 | time: 629.9
+[Epoch 206] Train-acc: 0.790, loss: 2.341 | Val-acc: 0.610 | time: 630.4
+[Epoch 207] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.610 | time: 629.8
+[Epoch 208] Train-acc: 0.789, loss: 2.341 | Val-acc: 0.608 | time: 629.8
+[Epoch 209] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.607 | time: 630.2
+[Epoch 210] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.616 | time: 630.9
+[Epoch 211] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.612 | time: 630.4
+[Epoch 212] Train-acc: 0.790, loss: 2.342 | Val-acc: 0.613 | time: 631.2
+[Epoch 213] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.606 | time: 631.9
+[Epoch 214] Train-acc: 0.790, loss: 2.341 | Val-acc: 0.611 | time: 632.9
+[Epoch 215] Train-acc: 0.790, loss: 2.341 | Val-acc: 0.613 | time: 633.0
+[Epoch 216] Train-acc: 0.790, loss: 2.342 | Val-acc: 0.610 | time: 632.8
+[Epoch 217] Train-acc: 0.789, loss: 2.341 | Val-acc: 0.617 | time: 632.4
+[Epoch 218] Train-acc: 0.790, loss: 2.341 | Val-acc: 0.611 | time: 633.7
+[Epoch 219] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.612 | time: 633.9
+[Epoch 220] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.611 | time: 634.2
+[Epoch 221] Train-acc: 0.790, loss: 2.342 | Val-acc: 0.599 | time: 633.9
+[Epoch 222] Train-acc: 0.788, loss: 2.342 | Val-acc: 0.610 | time: 632.8
+[Epoch 223] Train-acc: 0.790, loss: 2.341 | Val-acc: 0.606 | time: 632.9
+[Epoch 224] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.600 | time: 632.8
+[Epoch 225] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.611 | time: 633.8
+[Epoch 226] Train-acc: 0.790, loss: 2.341 | Val-acc: 0.602 | time: 633.1
+[Epoch 227] Train-acc: 0.788, loss: 2.342 | Val-acc: 0.607 | time: 632.7
+[Epoch 228] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.605 | time: 632.9
+[Epoch 229] Train-acc: 0.789, loss: 2.342 | Val-acc: 0.615 | time: 632.9

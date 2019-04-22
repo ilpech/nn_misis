@@ -2,6 +2,7 @@
 #author: pichugin
 #usage: python3 dataset_generator.py --dst /repositories --name dataset_sample --n-features 2 --n-samples 100000 --n-classes 40 --linear-separable True --n-clusters 1 --max-intersection-percentage 0.01 --draw True --save True
 
+import numpy as np
 from project_tools import *
 
 def make_dataset(n_features = 2, n_samples = 100000, n_classes = 40,
