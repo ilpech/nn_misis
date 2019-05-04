@@ -12,11 +12,9 @@ from mxnet.gluon.data.vision import transforms
 from tools import *
 import sys
 
-np.vstack()
-
 def get_data_raw_collect(dataset_path, batch_size, num_workers):
     val_path = os.path.join(dataset_path, 'val')
-    test_path = os.path.join(dataset_path, 'test')
+    # test_path = os.path.join(dataset_path, 'test')
     input_size = (220, 170)
     transform_test = transforms.Compose([
         transforms.Resize(input_size, keep_ratio = True),
@@ -25,10 +23,11 @@ def get_data_raw_collect(dataset_path, batch_size, num_workers):
     val_data = gluon.data.DataLoader(
         gluon.data.vision.ImageFolderDataset(val_path).transform_first(transform_test),
         batch_size=batch_size, shuffle=False, num_workers=num_workers)
-    test_data = gluon.data.DataLoader(
-        gluon.data.vision.ImageFolderDataset(test_path).transform_first(transform_test),
-        batch_size=batch_size, shuffle=False, num_workers = num_workers)
-    return val_data, test_data
+    # test_data = gluon.data.DataLoader(
+    #     gluon.data.vision.ImageFolderDataset(test_path).transform_first(transform_test),
+    #     batch_size=batch_size, shuffle=False, num_workers = num_workers)
+    # return val_data, test_data
+    return val_data
 
 def get_tp_fp_fn(net, val_data, ctx, classes_len):
     tp = np.zeros(shape=(1,classes_len))
@@ -90,7 +89,8 @@ params_path = os.path.join(params_dir, '{}-{:04d}.params'.format(
                                                             net_name, epoch))
 sym_path = os.path.join(params_dir, '{}-symbol.json'.format(net_name))
 net = gluon.nn.SymbolBlock.imports(sym_path, ['data'], params_path, ctx=ctx)
-val_data, test_data = get_data_raw_collect(dataset_path, 16, num_workers)
+# val_data, test_data = get_data_raw_collect(dataset_path, 16, num_workers)
+val_data = get_data_raw_collect(dataset_path, 16, num_workers)
 num_batch = len(val_data)
 params_path = os.path.join(params_dir, net_name)
 dict_path = os.path.join(params_dir, net_name + '_classes.txt')
@@ -99,25 +99,25 @@ with open(dict_path) as f:
 class_names = [x.strip() for x in content]
 classes_len = len(class_names)
 
-testing_dir = '/datasets/testing'
+testing_dir = '/datasets/testing_in_de_school'
 ensure_folder(testing_dir)
 
-test_tp, test_fp, test_fn, test_error_matrix = get_tp_fp_fn(net, test_data, ctx, classes_len)
-np.savetxt(os.path.join(testing_dir, 'test_error_matrix.csv'), 
-                        test_error_matrix, fmt='%d',delimiter=',')
-np.savetxt(os.path.join(testing_dir, 'test_tp.csv'), 
-                        test_tp, fmt='%d',delimiter=',')
-np.savetxt(os.path.join(testing_dir, 'test_fp.csv'), 
-                        test_fp, fmt='%d',delimiter=',')
-np.savetxt(os.path.join(testing_dir, 'test_fn.csv'), 
-                        test_fn, fmt='%d',delimiter=',')
+# test_tp, test_fp, test_fn, test_error_matrix = get_tp_fp_fn(net, test_data, ctx, classes_len)
+# np.savetxt(os.path.join(testing_dir, 'test_error_matrix.csv'), 
+#                         test_error_matrix, fmt='%d',delimiter=',')
+# np.savetxt(os.path.join(testing_dir, 'test_tp.csv'), 
+#                         test_tp, fmt='%d',delimiter=',')
+# np.savetxt(os.path.join(testing_dir, 'test_fp.csv'), 
+#                         test_fp, fmt='%d',delimiter=',')
+# np.savetxt(os.path.join(testing_dir, 'test_fn.csv'), 
+#                         test_fn, fmt='%d',delimiter=',')
 
-print('test')
-print('test_class matrix')
-print(test_error_matrix)
-print('test_tp: ', test_tp)
-print('test_fp: ', test_fp)
-print('test_fn: ', test_fn)
+# print('test')
+# print('test_class matrix')
+# print(test_error_matrix)
+# print('test_tp: ', test_tp)
+# print('test_fp: ', test_fp)
+# print('test_fn: ', test_fn)
 
 val_tp, val_fp, val_fn, val_error_matrix = get_tp_fp_fn(net, val_data, ctx, classes_len)
 np.savetxt(os.path.join(testing_dir, 'val_error_matrix.csv'), 
@@ -140,7 +140,7 @@ name, val_acc = test(net, val_data, ctx)
 
 print(val_acc)
 
-name, test_acc = test(net, test_data, ctx)
-# name, test_pillars_acc = test_on_single_class_(net, test_data, ctx, 1)
+# name, test_acc = test(net, test_data, ctx)
+# # name, test_pillars_acc = test_on_single_class_(net, test_data, ctx, 1)
 
-print(test_acc)
+# print(test_acc)

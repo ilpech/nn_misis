@@ -9,8 +9,8 @@ import pathlib
 import mxnet as mx
 from mxnet import gluon, image, nd
 from mxnet.gluon.data.vision import transforms
-sys.path.append('..')
-from tools.tools import *
+
+from tools import *
 
 parser = argparse.ArgumentParser(
                                 description=('script for sorting snippets by network classes')
@@ -75,11 +75,11 @@ sym_path = os.path.join(params_dir, '{}-symbol.json'.format(net_name))
 net = gluon.nn.SymbolBlock.imports(sym_path, ['data'], params_path, ctx=ctx)
 
 def transform(img):
-    input_size = (64, 64)
-    h = len(img)
-    w = len(img[0])
+    input_size = (220, 170)
+    # h = len(img)
+    # w = len(img[0])
     transform = transforms.Compose([
-        transforms.CenterCrop(w,w),
+        # transforms.CenterCrop(w,w),
         transforms.Resize(input_size, keep_ratio = True),
         transforms.ToTensor()
     ])
@@ -121,7 +121,7 @@ for season in os.listdir(dataset_path):
             except:
                 print('error during reading img', path_to_snippet)
                 continue
-            img = transform_trm(img)
+            img = transform(img)
             pred = net(img.expand_dims(axis=0))
             if softmax_output:
                 score = pred*255
