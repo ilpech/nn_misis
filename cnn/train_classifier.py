@@ -94,7 +94,7 @@ if train and save:
     for class_name in classes_list:
         dict.write(class_name + '\n')
     log_file = os.path.join(params_path, net_name + '_' + model_name + '_logs.txt')
-    metric_file = os.path.join(params_path, net_name + '_' + model_name + '_metricsi.txt')
+    metric_file = os.path.join(params_path, net_name + '_' + model_name + '_metrics.txt')
     if os.path.isfile(log_file):
         rewrite = input('log file exists want to rewrite (y/n): ')
         if rewrite != 'y':
@@ -186,11 +186,11 @@ if train:
                     print(val_acc_save_m)
                     if save:
                         log.write(val_acc_save_m)
-                    #for i in range(classes):
-                       # per_class_acc = '{}={}'.format(classes_list[i], test_on_single_class(net, val_data, ctx, i)[1])
-                       # print(per_class_acc)
-                       # if save:
-                       #     log.write(per_class_acc)
+                    for i in range(classes):
+                       per_class_acc = '{}={}'.format(classes_list[i], test_on_single_class(net, val_data, ctx, i)[1])
+                       print(per_class_acc)
+                       if save:
+                           log.write(per_class_acc + '\n')
                 else:
                     print('Params saved on epoch {}'.format(epoch+1))
                 net.save_parameters(os.path.join(

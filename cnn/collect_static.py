@@ -1,8 +1,3 @@
-#brief: скрипт обучения классификатора столбиков на предобработанных сниппетах 16х48
-#author: pichugin
-# usage: python3 train_classifier.py --train True --model-name resblocks_v5 --net-name pillars_detector.008_test
-#       --params-dir /datasets/models --classes 5 --dataset-path /datasets/dataset_pvsp.010_splitted_cropped_autocontrasted
-#       --ctx gpu --batch-size 16 --epochs 140 --save True --ssh False --note test_try
 import argparse
 import mxnet as mx
 import numpy as np
@@ -12,10 +7,12 @@ from mxnet.gluon.data.vision import transforms
 from tools import *
 import sys
 
+
 def get_data_raw_collect(dataset_path, batch_size, num_workers):
     val_path = os.path.join(dataset_path, 'val')
     # test_path = os.path.join(dataset_path, 'test')
     input_size = (220, 170)
+
     transform_test = transforms.Compose([
         transforms.Resize(input_size, keep_ratio = True),
         transforms.ToTensor(),
@@ -89,8 +86,10 @@ params_path = os.path.join(params_dir, '{}-{:04d}.params'.format(
                                                             net_name, epoch))
 sym_path = os.path.join(params_dir, '{}-symbol.json'.format(net_name))
 net = gluon.nn.SymbolBlock.imports(sym_path, ['data'], params_path, ctx=ctx)
+
 # val_data, test_data = get_data_raw_collect(dataset_path, 16, num_workers)
 val_data = get_data_raw_collect(dataset_path, 16, num_workers)
+
 num_batch = len(val_data)
 params_path = os.path.join(params_dir, net_name)
 dict_path = os.path.join(params_dir, net_name + '_classes.txt')
@@ -136,11 +135,12 @@ print('val fp: ', val_fp)
 print('val fn: ', val_fn)
 
 name, val_acc = test(net, val_data, ctx)
-# name, val_pillars_acc = test_on_single_class_(net, val_data, ctx, 1)
 
 print(val_acc)
 
+
 # name, test_acc = test(net, test_data, ctx)
 # # name, test_pillars_acc = test_on_single_class_(net, test_data, ctx, 1)
+
 
 # print(test_acc)
